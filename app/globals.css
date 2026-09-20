@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@300;400;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1C1C1E;
+  --orange-primary: #E8620A;
+  --orange-light: #F97316;
+  --orange-pale: #FFF7ED;
+  --gray-light: #F9FAFB;
+  --gray-medium: #6B7280;
+  --border-color: #E5E7EB;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-orange-primary: var(--orange-primary);
+  --color-orange-light: var(--orange-light);
+  --color-orange-pale: var(--orange-pale);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==============================
+   UTILITY CLASSES
+============================== */
+
+.section-pad {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.container-custom {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Orange accent line */
+.accent-line {
+  display: inline-block;
+  width: 48px;
+  height: 3px;
+  background-color: var(--orange-primary);
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+
+/* ==============================
+   ANIMATIONS
+============================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease forwards;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==============================
+   BUTTONS
+============================== */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--orange-primary);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #c9530a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(232, 98, 10, 0.3);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  color: var(--orange-primary);
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 2px solid var(--orange-primary);
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background-color: var(--orange-primary);
+  color: white;
+}
+
+/* ==============================
+   HERO SLIDER
+============================== */
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+/* ==============================
+   SERVICE CARDS
+============================== */
+
+.service-card {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 28px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.service-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  border-color: rgba(232, 98, 10, 0.2);
+}
+
+.service-icon {
+  width: 52px;
+  height: 52px;
+  background-color: var(--orange-pale);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  transition: background-color 0.25s ease;
+}
+
+.service-card:hover .service-icon {
+  background-color: var(--orange-primary);
+}
+
+.service-card:hover .service-icon svg {
+  color: white;
+}
+
+/* ==============================
+   NAV
+============================== */
+
+.nav-link {
+  color: #374151;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  padding: 4px 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--orange-primary);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover {
+  color: var(--orange-primary);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: var(--orange-primary);
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ==============================
+   FORM
+============================== */
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  color: var(--foreground);
+  background-color: white;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--orange-primary);
+  box-shadow: 0 0 0 3px rgba(232, 98, 10, 0.1);
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+/* ==============================
+   TESTIMONIAL
+============================== */
+
+.testimonial-card {
+  background: white;
+  border-radius: 10px;
+  padding: 28px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border-color);
+}
+
+/* ==============================
+   RESPONSIVE HELPERS
+============================== */
+
+@media (max-width: 768px) {
+  .section-pad {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+  
+  .container-custom {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, ArrowRight, PhoneCall, Sparkles } from 'lucide-react';
+import { ArrowRight, PhoneCall } from 'lucide-react';
 
 const slides = [
   {
@@ -55,10 +55,6 @@ export default function HeroSlider() {
     goTo((current + 1) % slides.length);
   }, [current, goTo]);
 
-  const prev = useCallback(() => {
-    goTo((current - 1 + slides.length) % slides.length);
-  }, [current, goTo]);
-
   useEffect(() => {
     const timer = setInterval(() => {
       next();
@@ -69,15 +65,7 @@ export default function HeroSlider() {
   const slide = slides[current];
 
   return (
-    <section
-      style={{
-        position: 'relative',
-        height: 'clamp(520px, 75vh, 680px)',
-        overflow: 'hidden',
-        backgroundColor: '#111827',
-      }}
-      aria-label="Hero carousel"
-    >
+    <section className="hero-slider" aria-label="Hero carousel">
       {/* Background Image */}
       <div
         key={slide.id}
@@ -99,7 +87,6 @@ export default function HeroSlider() {
           }}
           sizes="100vw"
         />
-        {/* Rich gradient overlay */}
         <div
           style={{
             position: 'absolute',
@@ -108,13 +95,12 @@ export default function HeroSlider() {
               'linear-gradient(90deg, rgba(17,24,39,0.92) 0%, rgba(17,24,39,0.80) 50%, rgba(17,24,39,0.55) 100%)',
           }}
         />
-        {/* Subtle orange ambient glow */}
         <div
           style={{
             position: 'absolute',
             top: 0,
             left: 0,
-            width: '450px',
+            width: 'min(450px, 100%)',
             height: '450px',
             background: 'radial-gradient(circle, rgba(232,98,10,0.18) 0%, transparent 70%)',
             pointerEvents: 'none',
@@ -123,78 +109,24 @@ export default function HeroSlider() {
       </div>
 
       {/* Content Container */}
-      <div
-        className="container-custom"
-        style={{
-          position: 'relative',
-          zIndex: 5,
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
+      <div className="container-custom hero-content-wrap">
         <div
           key={`content-${slide.id}`}
           style={{
             maxWidth: '620px',
+            width: '100%',
             animation: 'fadeInUp 0.6s ease-out forwards',
           }}
         >
-          {/* Eyebrow badge */}
-          {/* <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              backgroundColor: 'rgba(232,98,10,0.22)',
-              border: '1px solid rgba(232,98,10,0.45)',
-              borderRadius: '20px',
-              padding: '6px 16px',
-              marginBottom: '20px',
-            }}
-          >
-            <Sparkles size={14} color="#F97316" />
-            <span
-              style={{
-                color: '#FED7AA',
-                fontSize: '0.8125rem',
-                fontWeight: '600',
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-              }}
-            >
-              {slide.eyebrow}
-            </span>
-          </div> */}
-
-          {/* Headline */}
-          <h1
-            style={{
-              fontSize: 'clamp(2rem, 4.5vw, 3.25rem)',
-              fontWeight: '800',
-              color: 'white',
-              lineHeight: '1.15',
-              marginBottom: '20px',
-              fontFamily: "'Merriweather', serif",
-            }}
-          >
+          <h1 className="hero-title">
             {slide.title}
           </h1>
 
-          {/* Subtitle */}
-          <p
-            style={{
-              fontSize: 'clamp(0.9375rem, 1.5vw, 1.125rem)',
-              color: 'rgba(255,255,255,0.85)',
-              lineHeight: '1.7',
-              marginBottom: '36px',
-            }}
-          >
+          <p className="hero-subtitle">
             {slide.subtitle}
           </p>
 
-          {/* CTAs */}
-          <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
+          <div className="hero-ctas">
             <Link href={slide.primaryCta.href} className="btn-primary">
               {slide.primaryCta.label}
               <ArrowRight size={16} strokeWidth={2.5} />
@@ -204,9 +136,8 @@ export default function HeroSlider() {
             </Link>
           </div>
 
-          {/* Phone info */}
-          <div style={{ marginTop: '32px', display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: '42px', height: '42px', backgroundColor: 'rgba(232,98,10,0.22)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(232,98,10,0.5)', color: '#F97316' }}>
+          <div className="hero-phone">
+            <div className="hero-phone-icon">
               <PhoneCall size={18} />
             </div>
             <div>
@@ -220,17 +151,7 @@ export default function HeroSlider() {
       </div>
 
       {/* Slide Indicators */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '32px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          gap: '8px',
-          zIndex: 10,
-        }}
-      >
+      <div className="hero-dots">
         {slides.map((_, i) => (
           <button
             key={i}
@@ -248,75 +169,6 @@ export default function HeroSlider() {
             }}
           />
         ))}
-      </div>
-
-      {/* Navigation arrows */}
-      <button
-        onClick={prev}
-        aria-label="Previous slide"
-        style={{
-          position: 'absolute',
-          left: '24px',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          zIndex: 10,
-          background: 'rgba(255,255,255,0.18)',
-          border: '1px solid rgba(255,255,255,0.3)',
-          borderRadius: '50%',
-          width: '46px',
-          height: '46px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer',
-          backdropFilter: 'blur(4px)',
-          transition: 'background 0.2s ease',
-          color: 'white',
-        }}
-      >
-        <ChevronLeft size={22} strokeWidth={2.5} />
-      </button>
-      <button
-        onClick={next}
-        aria-label="Next slide"
-        style={{
-          position: 'absolute',
-          right: '24px',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          zIndex: 10,
-          background: 'rgba(255,255,255,0.18)',
-          border: '1px solid rgba(255,255,255,0.3)',
-          borderRadius: '50%',
-          width: '46px',
-          height: '46px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer',
-          backdropFilter: 'blur(4px)',
-          transition: 'background 0.2s ease',
-          color: 'white',
-        }}
-      >
-        <ChevronRight size={22} strokeWidth={2.5} />
-      </button>
-
-      {/* Slide counter */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '32px',
-          right: '32px',
-          color: 'rgba(255,255,255,0.6)',
-          fontSize: '0.8125rem',
-          zIndex: 10,
-          fontWeight: '500',
-        }}
-      >
-        <span style={{ color: 'white', fontWeight: '700' }}>{String(current + 1).padStart(2, '0')}</span>
-        {' / '}
-        {String(slides.length).padStart(2, '0')}
       </div>
     </section>
   );

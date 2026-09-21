@@ -97,7 +97,7 @@ export default function ServicesPage() {
         style={{
           position: 'relative',
           backgroundColor: '#111827',
-          padding: '80px 24px',
+          padding: 'clamp(48px, 8vw, 80px) 16px',
           overflow: 'hidden',
         }}
       >
@@ -150,10 +150,10 @@ export default function ServicesPage() {
                 key={service.title}
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                  gap: '40px',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
+                  gap: '24px',
                   alignItems: 'center',
-                  padding: '32px',
+                  padding: 'clamp(16px, 4vw, 32px)',
                   borderRadius: '16px',
                   border: '1px solid #E5E7EB',
                   backgroundColor: idx % 2 === 0 ? 'white' : '#F9FAFB',
@@ -250,7 +250,7 @@ export default function ServicesPage() {
             center
           />
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: '20px' }}>
             {[
               {
                 image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80&fit=crop&auto=format',
@@ -308,7 +308,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Clinic exterior photo */}
-          <div style={{ marginTop: '32px', borderRadius: '12px', overflow: 'hidden', position: 'relative', aspectRatio: '16/7', border: '1px solid #E5E7EB', boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}>
+          <div style={{ marginTop: '32px', borderRadius: '12px', overflow: 'hidden', position: 'relative', aspectRatio: '16/7', minHeight: '180px', border: '1px solid #E5E7EB', boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}>
             <Image
               src="/clinic-front.jpg"
               alt="Umer Clinic exterior – Rawalpindi"
@@ -322,7 +322,7 @@ export default function ServicesPage() {
                 inset: 0,
                 display: 'flex',
                 alignItems: 'flex-end',
-                padding: '32px',
+                padding: 'clamp(16px, 4vw, 32px)',
                 background: 'linear-gradient(transparent 40%, rgba(0,0,0,0.7))',
               }}
             >

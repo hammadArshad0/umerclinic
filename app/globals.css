@@ -28,6 +28,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -37,6 +38,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 /* ==============================
@@ -193,6 +195,74 @@ body {
    HERO SLIDER
 ============================== */
 
+.hero-slider {
+  position: relative;
+  height: clamp(520px, 75vh, 680px);
+  overflow: hidden;
+  background-color: #111827;
+}
+
+.hero-content-wrap {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.hero-title {
+  font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+  font-weight: 800;
+  color: white;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  font-family: 'Merriweather', serif;
+}
+
+.hero-subtitle {
+  font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.hero-phone {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-phone-icon {
+  width: 42px;
+  height: 42px;
+  background-color: rgba(232, 98, 10, 0.22);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(232, 98, 10, 0.5);
+  color: #F97316;
+  flex-shrink: 0;
+}
+
+.hero-dots {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
 .hero-slide {
   position: absolute;
   inset: 0;
@@ -331,12 +401,94 @@ body {
 
 @media (max-width: 768px) {
   .section-pad {
-    padding-top: 56px;
-    padding-bottom: 56px;
+    padding-top: 48px;
+    padding-bottom: 48px;
   }
-  
+
   .container-custom {
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  .hero-slider {
+    height: auto;
+    min-height: 0;
+  }
+
+  .hero-content-wrap {
+    align-items: flex-start;
+    padding-top: 36px;
+    padding-bottom: 72px;
+  }
+
+  .hero-title {
+    margin-bottom: 14px;
+  }
+
+  .hero-subtitle {
+    margin-bottom: 24px;
+  }
+
+  .hero-ctas {
+    width: 100%;
+  }
+
+  .hero-ctas .btn-primary,
+  .hero-ctas .btn-secondary {
+    justify-content: center;
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .hero-phone {
+    margin-top: 24px;
+  }
+
+  .hero-dots {
+    bottom: 20px;
+  }
+
+  .top-info-bar {
+    display: none !important;
+  }
+
+  .clinic-float-card {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    margin-top: 16px;
+    max-width: 100% !important;
+  }
+
+  .clinic-accent {
+    display: none;
+  }
+
+  .doctor-badge-left {
+    left: 12px !important;
+  }
+
+  .doctor-badge-right {
+    right: 12px !important;
+  }
+
+  .quick-contact-item {
+    border-right: none !important;
+    border-bottom: 1px solid #E5E7EB;
+  }
+
+  .quick-contact-item:last-child {
+    border-bottom: none;
+  }
+
+  .service-card,
+  .testimonial-card {
+    padding: 20px;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline {
+    padding: 12px 20px;
   }
 }

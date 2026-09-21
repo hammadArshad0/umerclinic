@@ -18,7 +18,7 @@ export default function AboutPage() {
         style={{
           position: 'relative',
           backgroundColor: '#111827',
-          padding: '80px 24px',
+          padding: 'clamp(48px, 8vw, 80px) 16px',
           overflow: 'hidden',
         }}
       >
@@ -58,7 +58,7 @@ export default function AboutPage() {
       {/* About Content */}
       <section className="section-pad" style={{ backgroundColor: 'white' }}>
         <div className="container-custom">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '64px', alignItems: 'start' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: 'clamp(32px, 6vw, 64px)', alignItems: 'start' }}>
             {/* Image */}
             <div>
               <div style={{ borderRadius: '12px', overflow: 'hidden', aspectRatio: '4/5', position: 'relative', boxShadow: '0 12px 36px rgba(0,0,0,0.08)' }}>
@@ -127,7 +127,7 @@ export default function AboutPage() {
             center
           />
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: '24px' }}>
             {[
               {
                 step: '01',
@@ -196,7 +196,7 @@ export default function AboutPage() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
               gap: '48px',
               alignItems: 'center',
               maxWidth: '900px',

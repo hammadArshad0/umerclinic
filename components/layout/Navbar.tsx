@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MapPin, Clock, Phone, Activity, Menu, X, MessageCircle } from 'lucide-react';
@@ -8,6 +8,8 @@ import { MapPin, Clock, Phone, Activity, Menu, X, MessageCircle } from 'lucide-r
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState(112);
+  const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -29,6 +31,16 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ''; };
   }, [isMobileOpen]);
 
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const updateHeight = () => setHeaderHeight(el.offsetHeight);
+    updateHeight();
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [isScrolled]);
+
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
@@ -39,6 +51,7 @@ export default function Navbar() {
   return (
     <>
       <header
+        ref={headerRef}
         style={{
           position: 'fixed',
           top: 0,
@@ -53,6 +66,7 @@ export default function Navbar() {
       >
         {/* Top info bar */}
         <div
+          className="top-info-bar"
           style={{
             backgroundColor: '#1C1C1E',
             color: '#d1d5db',
@@ -90,7 +104,10 @@ export default function Navbar() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: isScrolled ? '12px 24px' : '16px 24px',
+            paddingTop: isScrolled ? '12px' : '16px',
+            paddingBottom: isScrolled ? '12px' : '16px',
+            paddingLeft: 0,
+            paddingRight: 0,
             transition: 'padding 0.3s ease',
           }}
         >
@@ -174,6 +191,7 @@ export default function Navbar() {
           </button>
         </nav>
       </header>
+      <div aria-hidden="true" style={{ height: headerHeight }} />
 
       {/* Mobile drawer */}
       {isMobileOpen && (

@@ -9,11 +9,11 @@ export default function Footer() {
   return (
     <footer style={{ backgroundColor: '#111827', color: '#D1D5DB' }}>
       {/* Main footer */}
-      <div className="container-custom" style={{ padding: '64px 24px 48px' }}>
+      <div className="container-custom" style={{ paddingTop: '64px', paddingBottom: '48px' }}>
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))',
             gap: '48px',
           }}
         >

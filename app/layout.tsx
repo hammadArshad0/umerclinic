@@ -37,7 +37,7 @@ export default function RootLayout({
       </head>
       <body style={{ paddingTop: '0' }}>
         <Navbar />
-        <main style={{ paddingTop: '73px' }}>
+        <main>
           {children}
         </main>
         <Footer />

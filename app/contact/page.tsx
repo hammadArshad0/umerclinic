@@ -53,7 +53,7 @@ export default function ContactPage() {
         style={{
           position: 'relative',
           backgroundColor: '#111827',
-          padding: '80px 24px',
+          padding: 'clamp(48px, 8vw, 80px) 16px',
           overflow: 'hidden',
         }}
       >
@@ -83,9 +83,9 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Cards */}
-      <section style={{ backgroundColor: '#F9FAFB', padding: '48px 24px 0' }}>
+      <section style={{ backgroundColor: '#F9FAFB', padding: '48px 16px 0' }}>
         <div className="container-custom">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: '16px' }}>
             {contactCards.map((card, idx) => (
               <div
                 key={idx}
@@ -149,7 +149,7 @@ export default function ContactPage() {
       {/* Form + Map */}
       <section className="section-pad" style={{ backgroundColor: '#F9FAFB' }}>
         <div className="container-custom">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '48px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: 'clamp(24px, 5vw, 48px)' }}>
             {/* Form */}
             <div>
               <SectionHeading

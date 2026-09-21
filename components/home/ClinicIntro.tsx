@@ -17,8 +17,8 @@ export default function ClinicIntro() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '64px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+            gap: 'clamp(32px, 6vw, 64px)',
             alignItems: 'center',
           }}
         >
@@ -44,6 +44,7 @@ export default function ClinicIntro() {
             </div>
             {/* Floating stats card */}
             <div
+              className="clinic-float-card"
               style={{
                 position: 'absolute',
                 bottom: '-24px',
@@ -69,6 +70,7 @@ export default function ClinicIntro() {
             </div>
             {/* Orange accent square */}
             <div
+              className="clinic-accent"
               style={{
                 position: 'absolute',
                 top: '-16px',

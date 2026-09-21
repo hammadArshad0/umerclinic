@@ -14,7 +14,7 @@ export default function CTASection({ title, subtitle, primaryBtn, secondaryBtn, 
     <section
       style={{
         background: 'linear-gradient(135deg, #111827 0%, #1F2937 100%)',
-        padding: '80px 24px',
+        padding: 'clamp(48px, 8vw, 80px) 16px',
         position: 'relative',
         overflow: 'hidden',
       }}

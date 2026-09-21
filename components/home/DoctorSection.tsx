@@ -17,8 +17,8 @@ export default function DoctorSection() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '64px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+            gap: 'clamp(32px, 6vw, 64px)',
             alignItems: 'center',
           }}
         >
@@ -81,6 +81,7 @@ export default function DoctorSection() {
             </div>
             {/* Experience badge */}
             <div
+              className="doctor-badge-left"
               style={{
                 position: 'absolute',
                 top: '24px',
@@ -98,6 +99,7 @@ export default function DoctorSection() {
             </div>
             {/* Open hours badge */}
             <div
+              className="doctor-badge-right"
               style={{
                 position: 'absolute',
                 bottom: '24px',
